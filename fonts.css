@@ -1,0 +1,49 @@
+@font-face {
+  font-family: "Thmanyah Serif Text";
+  src: url("fonts/thmanyahseriftext-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Thmanyah Serif Text";
+  src: url("fonts/thmanyahseriftext-Medium.woff2") format("woff2");
+  font-weight: 500 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Thmanyah Serif Text";
+  src: url("fonts/thmanyahseriftext-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Thmanyah Serif Text";
+  src: url("fonts/thmanyahseriftext-Black.woff2") format("woff2");
+  font-weight: 800 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root,
+body,
+button,
+input,
+textarea,
+.brand-name,
+.title-block h1,
+.title-block p,
+.nav-label small,
+.section-title h2,
+.section-title [dir="rtl"] h2,
+.notes-label span,
+.progress-ring span,
+.dialog-card h2,
+.dialog-card > p[dir="rtl"] {
+  font-family: "Thmanyah Serif Text", Georgia, serif;
+}
