@@ -1,6 +1,6 @@
 # SOFA Support PRD Questionnaire
 
-Bilingual interactive owner-approval questionnaire for the SOFA Support WordPress chat feature.
+Bilingual interactive owner-approval questionnaire for the SOFA Support anonymous emotional-support system.
 
 ## Submission flow
 
