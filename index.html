@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SOFA Support bilingual PRD approval questionnaire">
+  <title>SOFA Support | PRD Approval Questionnaire</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%2317243b'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Georgia' font-size='36' font-weight='700' fill='%23c9973d'%3ES%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="SOFA Support questionnaire home">
+      <span class="brand-name">SOFA SUPPORT</span>
+      <span class="brand-description">Anonymous emotional-support service</span>
+    </a>
+    <div class="title-block">
+      <h1>PRD Approval Questionnaire</h1>
+      <p lang="ar" dir="rtl">استبيان اعتماد متطلبات المنتج</p>
+    </div>
+    <div class="save-state" aria-live="polite">
+      <span class="save-icon" aria-hidden="true">✓</span>
+      <span><strong id="save-label">Saved on this device</strong><small id="save-time">Not saved yet</small></span>
+    </div>
+  </header>
+
+  <div class="app-shell" id="top">
+    <aside class="section-nav" aria-label="Questionnaire sections">
+      <div class="nav-heading">
+        <strong>Section progress</strong>
+        <span lang="ar" dir="rtl">تقدم الأقسام</span>
+      </div>
+      <nav id="section-list"></nav>
+      <button class="button button-secondary mobile-sections" type="button" id="toggle-sections" aria-expanded="false">View all sections</button>
+    </aside>
+
+    <main class="form-area">
+      <section class="intro" id="intro">
+        <div>
+          <h2>Before you begin</h2>
+          <p>This questionnaire records the owners' approved operating and product decisions for SOFA's anonymous emotional-support chat. Your responses will form the basis of the final implementation PRD and development estimate.</p>
+        </div>
+        <div lang="ar" dir="rtl">
+          <h2>قبل البدء</h2>
+          <p>يوثق هذا الاستبيان قرارات المالكين المعتمدة لتشغيل وتطوير محادثة الدعم العاطفي المجهولة في صوفا. وستشكل إجاباتكم أساس وثيقة المتطلبات التنفيذية النهائية والتقدير البرمجي.</p>
+        </div>
+      </section>
+
+      <section class="respondent" aria-labelledby="respondent-title">
+        <div class="section-title compact">
+          <div><h2 id="respondent-title">Owner details</h2><p>Required for approval routing</p></div>
+          <div lang="ar" dir="rtl"><h2>بيانات المالك</h2><p>مطلوبة لتوثيق الاعتماد</p></div>
+        </div>
+        <div class="respondent-grid">
+          <label>Full name / <span lang="ar" dir="rtl">الاسم الكامل</span><input id="owner-name" autocomplete="name" required></label>
+          <label>Role / <span lang="ar" dir="rtl">الصفة</span><input id="owner-role" autocomplete="organization-title" required></label>
+          <label>Organization / <span lang="ar" dir="rtl">الجهة</span><input id="organization" value="SOFA Support" required></label>
+        </div>
+      </section>
+
+      <section id="question-section" aria-live="polite">
+        <div class="section-title">
+          <div><span class="section-count" id="section-count"></span><h2 id="section-title-en"></h2></div>
+          <div lang="ar" dir="rtl"><span class="section-count" id="section-count-ar"></span><h2 id="section-title-ar"></h2></div>
+        </div>
+        <div class="question-head" aria-hidden="true">
+          <span>Decision and recommendation</span><span>Owner response</span><span lang="ar" dir="rtl">القرار والتوصية</span>
+        </div>
+        <div id="questions"></div>
+      </section>
+
+      <div class="form-actions">
+        <button type="button" class="button button-secondary" id="previous">← Previous</button>
+        <button type="button" class="button button-secondary" id="save">Save draft</button>
+        <button type="button" class="button button-secondary" id="download">Download backup</button>
+        <button type="button" class="button button-primary" id="next">Next section →</button>
+      </div>
+    </main>
+
+    <aside class="summary-panel">
+      <h2>Completion summary</h2>
+      <p lang="ar" dir="rtl">ملخص الإنجاز</p>
+      <div class="progress-ring" id="progress-ring" role="img" aria-label="0 percent complete"><span id="percent">0%</span><small>Complete</small></div>
+      <p class="summary-copy"><strong id="answered-count">0</strong> of <strong id="total-count">0</strong> decisions answered</p>
+      <dl class="status-list">
+        <div><dt><span class="status-dot complete"></span>Approved</dt><dd id="approved-count">0</dd></div>
+        <div><dt><span class="status-dot change"></span>Change required</dt><dd id="change-count">0</dd></div>
+        <div><dt><span class="status-dot empty"></span>Not answered</dt><dd id="empty-count">0</dd></div>
+      </dl>
+      <div class="privacy-note">
+        <strong>Submission safeguard</strong>
+        <p>Your draft stays in this browser until you submit or clear it. Download a backup before submitting.</p>
+      </div>
+      <button class="button button-submit" type="button" id="review-submit">Review and submit</button>
+    </aside>
+  </div>
+
+  <dialog id="submit-dialog">
+    <form method="dialog" class="dialog-card" id="submission-form">
+      <button class="dialog-close" value="cancel" aria-label="Close">×</button>
+      <h2>Review and submit</h2>
+      <p lang="ar" dir="rtl">مراجعة الإجابات وإرسالها</p>
+      <div class="submission-status" id="submission-status"></div>
+      <label class="confirmation"><input type="checkbox" id="confirm-approval"> <span>I confirm that these responses represent the owners' current decisions.</span></label>
+      <label class="confirmation" lang="ar" dir="rtl"><input type="checkbox" id="confirm-approval-ar"> <span>أؤكد أن هذه الإجابات تمثل قرارات المالكين الحالية.</span></label>
+      <div class="dialog-actions">
+        <button class="button button-secondary" type="button" id="dialog-download">Download backup</button>
+        <button class="button button-submit" type="button" id="submit-response">Submit securely</button>
+      </div>
+      <p class="form-service-note">Submission is delivered through FormSubmit to sgamal2593@gmail.com. The first submission requires one-time email activation.</p>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
