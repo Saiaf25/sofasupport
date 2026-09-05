@@ -1,14 +1,16 @@
 const sections=window.SOFADATA;
-const STORAGE_KEY="sofa-prd-responses-v1";
+const publishedResponse=window.SOFA_PUBLISHED_RESPONSE;
+const STORAGE_KEY=`sofa-prd-responses-v2-${publishedResponse.id}`;
 let current=0;
-let state={owner:{name:"",role:"",organization:"SOFA Support"},answers:{},updatedAt:null,submittedAt:null};
+let state=createPublishedState();
 
 const $=s=>document.querySelector(s);
 const list=$("#section-list"),questionsEl=$("#questions"),toast=$("#toast");
 const total=sections.reduce((n,s)=>n+s.questions.length,0);
 
 function key(si,qi){return `${si}-${qi}`}
-function load(){try{const saved=JSON.parse(localStorage.getItem(STORAGE_KEY));if(saved)state={...state,...saved}}catch(e){};$("#owner-name").value=state.owner.name||"";$("#owner-role").value=state.owner.role||"";$("#organization").value=state.owner.organization||"SOFA Support";updateSaveLabel()}
+function createPublishedState(){const answers={};sections.forEach((s,si)=>s.questions.forEach((_,qi)=>{const k=key(si,qi),published=publishedResponse.answers[k]||{};answers[k]={decision:published.decision||publishedResponse.defaultDecision,notes:published.notes||""}}));return {publishedResponseId:publishedResponse.id,owner:{...publishedResponse.owner},answers,updatedAt:null,submittedAt:null}}
+function load(){try{const saved=JSON.parse(localStorage.getItem(STORAGE_KEY));if(saved?.publishedResponseId===publishedResponse.id)state={...state,...saved}}catch(e){};$("#owner-name").value=state.owner.name||"";$("#owner-role").value=state.owner.role||"";$("#organization").value=state.owner.organization||"SOFA Support";const responseDate=new Date(publishedResponse.sourceGeneratedAt).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"});$("#published-response").innerHTML=`<strong>Client response loaded</strong><span>${escapeHtml(publishedResponse.owner.name)} · ${escapeHtml(publishedResponse.owner.role)} · ${responseDate}</span><span lang="ar" dir="rtl">تم تحميل إجابات العميل المعتمدة ويمكن مراجعتها أو تعديلها محليا.</span>`;updateSaveLabel()}
 function save(show=true){state.owner={name:$("#owner-name").value.trim(),role:$("#owner-role").value.trim(),organization:$("#organization").value.trim()};state.updatedAt=new Date().toISOString();localStorage.setItem(STORAGE_KEY,JSON.stringify(state));updateSaveLabel();if(show)notify("Draft saved on this device")}
 function updateSaveLabel(){if(!state.updatedAt)return;$("#save-time").textContent=`Saved ${new Date(state.updatedAt).toLocaleString()}`}
 function notify(msg){toast.textContent=msg;toast.classList.add("show");clearTimeout(notify.t);notify.t=setTimeout(()=>toast.classList.remove("show"),2500)}
